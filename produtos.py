@@ -75,3 +75,14 @@ def executar_produtos():
 
         for nome, preco in produtos:
             print(f"Nome: {nome} - Preço: R${preco:.2f}")
+
+    while True:
+        menu()
+        opcao = input("Escolha uma opção: ").strip()
+
+        if opcao == "1":
+            cadastrar_produto()
+        elif opcao == "2":
+            listar_produtos()
+        else:
+            print("Opção inválida! Escolha novamente.")
