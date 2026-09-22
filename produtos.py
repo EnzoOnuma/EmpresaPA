@@ -63,3 +63,15 @@ def executar_produtos():
         with open(ARQUIVO_PRODUTOS, "a", encoding="utf-8") as arquivo:
             arquivo.write(f"{nome};{preco}\n")
         print(f"\nProduto '{nome}' cadastrado com sucesso!")
+
+    def listar_produtos():
+        print("\n--- Lista de Produtos ---")
+
+        produtos = carregar_produtos()
+
+        if not produtos:
+            print("Nenhum produto cadastrado ainda.")
+            return
+
+        for nome, preco in produtos:
+            print(f"Nome: {nome} - Preço: R${preco:.2f}")
