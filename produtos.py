@@ -28,3 +28,10 @@ def executar_produtos():
                 print(f"Linha inválida ignorada: {linha}")
 
         return produtos
+
+    def produto_existe(nome):
+        produtos = carregar_produtos()
+        for nome_cadastrado, preco in produtos:
+            if nome_cadastrado.lower() == nome.lower():
+                return True
+        return False
