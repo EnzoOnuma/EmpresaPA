@@ -1,4 +1,4 @@
-# Dupla: João Pedro Formiga Baptista e Matheus Henriques Geroldo - Turma B 1ºDS
+# Dupla: João Pedro Formiga Baptista e Matheus Henriques Geroldo
 import os
 
 ARQUIVO_PRODUTOS = "produtos.txt"
@@ -8,6 +8,8 @@ def executar_produtos():
         print("\n===== MENU DE PRODUTOS =====")
         print("1 - Cadastrar produto")
         print("2 - Listar produtos")
+        print("3 - Alterar produto")
+        print("4 - Excluir produto")
         print("0 - Voltar ao menu principal")
 
     def carregar_produtos():
@@ -75,7 +77,7 @@ def executar_produtos():
 
         for nome, preco in produtos:
             print(f"Nome: {nome} - Preço: R${preco:.2f}")
-            
+
     def alterar_produto():
         print("\n--- Alterar Produto ---")
         produtos = carregar_produtos()
@@ -109,7 +111,7 @@ def executar_produtos():
                     break
 
                 while True:
-                    novo_preco_str = input("Digite o novo preço (ou Enter para manter): R$ ").strip()
+                    novo_preco_str = input("Digite o novo preço (ou Enter para manter): R$ ").strip().replace(",", ".")
                     if novo_preco_str == "":
                         novo_preco = preco
                         break
@@ -127,11 +129,11 @@ def executar_produtos():
                 with open(ARQUIVO_PRODUTOS, "w", encoding="utf-8") as arquivo:
                     for n, p in produtos:
                         arquivo.write(f"{n};{p}\n")
-                print("Produto alteredo com sucesso!")
+                print("Produto alterado com sucesso!")
                 return
 
         print("Produto não encontrado.")
-        
+
     def excluir_produto():
         print("\n--- Excluir Produto ---")
         produtos = carregar_produtos()
