@@ -131,6 +131,31 @@ def executar_produtos():
                 return
 
         print("Produto não encontrado.")
+        
+    def excluir_produto():
+        print("\n--- Excluir Produto ---")
+        produtos = carregar_produtos()
+
+        if not produtos:
+            print("Nenhum produto cadastrado ainda.")
+            return
+
+        nome_pesquisa = input("Digite o nome do produto que deseja excluir: ").strip()
+
+        for i, (nome, preco) in enumerate(produtos):
+            if nome.lower() == nome_pesquisa.lower():
+                confirmacao = input(f"Tem certeza que deseja excluir '{nome}'? (S/N): ").strip().upper()
+                if confirmacao == "S":
+                    produtos.pop(i)
+                    with open(ARQUIVO_PRODUTOS, "w", encoding="utf-8") as arquivo:
+                        for n, p in produtos:
+                            arquivo.write(f"{n};{p}\n")
+                    print("Produto excluído com sucesso!")
+                else:
+                    print("Exclusão cancelada.")
+                return
+
+        print("Produto não encontrado.")
 
     while True:
         menu()
@@ -142,6 +167,8 @@ def executar_produtos():
             listar_produtos()
         elif opcao == "3":
             alterar_produto()
+        elif opcao == "4":
+            excluir_produto()
         elif opcao == "0":
             print("Saindo do módulo de produtos...")
             break
