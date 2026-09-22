@@ -35,3 +35,31 @@ def executar_produtos():
             if nome_cadastrado.lower() == nome.lower():
                 return True
         return False
+
+    def cadastrar_produto():
+        print("\n--- Cadastro de Produto ---")
+
+        while True:
+            nome = input("\nNome do produto: ").strip()
+            if nome == "":
+                print("O nome não pode ficar em branco.")
+                continue
+            if produto_existe(nome):
+                print("Produto já cadastrado!")
+                return
+            break
+
+        while True:
+            try:
+                preco = float(input("\nPreço do produto: R$ ").replace(",", "."))
+            except ValueError:
+                print("Valor inválido! Digite um número.")
+                continue
+            if preco <= 0:
+                print("O preço deve ser maior que zero. Tente novamente.")
+                continue
+            break
+
+        with open(ARQUIVO_PRODUTOS, "a", encoding="utf-8") as arquivo:
+            arquivo.write(f"{nome};{preco}\n")
+        print(f"\nProduto '{nome}' cadastrado com sucesso!")
